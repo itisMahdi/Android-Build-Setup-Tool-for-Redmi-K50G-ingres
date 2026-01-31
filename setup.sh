@@ -1,16 +1,16 @@
 #!/bin/bash
 
 echo "Cloning device/xiaomi/cupid folder..."
-git clone https://github.com/Joshaby/android_device_xiaomi_cupid.git -b lineage-23.0 device/xiaomi/cupid
+git clone https://github.com/Joshaby/android_device_xiaomi_cupid.git -b lineage-23.2 device/xiaomi/cupid
 
 echo "Cloning device/xiaomi/sm8450-common folder..."
-git clone https://github.com/Joshaby/android_device_xiaomi_sm8450-common device/xiaomi/sm8450-common
+git clone https://github.com/Joshaby/android_device_xiaomi_sm8450-common -b lineage-23.2 device/xiaomi/sm8450-common
 
 echo "Cloning vendor/xiaomi/sm8450-common..."
-git clone https://github.com/Joshaby/proprietary_vendor_xiaomi_sm8450-common.git -b lineage-23.0-gpu-driver-762.40 vendor/xiaomi/sm8450-common
+git clone https://github.com/Joshaby/proprietary_vendor_xiaomi_sm8450-common.git -b lineage-23.2-gpu-driver-762.40 vendor/xiaomi/sm8450-common
 
 echo "Cloning vendor/xiaomi/cupid folder..."
-git clone https://github.com/TheMuppets/proprietary_vendor_xiaomi_cupid.git -b lineage-23.0 vendor/xiaomi/cupid
+git clone https://github.com/TheMuppets/proprietary_vendor_xiaomi_cupid.git -b lineage-23.2 vendor/xiaomi/cupid
 
 echo "Cloning vendor/xiaomi/miuicamera-cupid folder..."
 git clone https://codeberg.org/dopaemon/proprietary_vendor_xiaomi_miuicamera-cupid.git -b lineage-22.2 vendor/xiaomi/miuicamera-cupid
@@ -166,7 +166,7 @@ echo "Change Kernel Name"
 # Kernel name
 echo 'CONFIG_LOCALVERSION=""' >> "$defconfig"
 echo "CONFIG_LOCALVERSION_AUTO=n" >> "$defconfig"
-sed -i 's/echo "$res"/res="${res\/-gki+\/}"\necho "$res-JoshaCore-WILDKSU+SUSFS"/' scripts/setlocalversion
+sed -i '217s/^[[:space:]]*echo "$res"[[:space:]]*$/res="${res\/-gki+\/}"\necho "$res-JoshaCore-WILDKSU+SUSFS"/' scripts/setlocalversion
 
 echo "Fix build for Clang r584948b(22.0.1)"
 
@@ -174,4 +174,6 @@ echo 'KBUILD_CFLAGS += -Wuninitialized' >> Makefile
 echo 'KBUILD_CFLAGS += -Wno-sometimes-uninitialized' >> Makefile
 echo 'KBUILD_CFLAGS += -Wuninitialized' >> Makefile
 sed -i 's/^\([[:space:]]*const struct sde_pingpong_cfg \*pp_cfg\);/\1 = NULL;/' ../sm8450-modules/qcom/opensource/display-drivers/msm/sde/sde_rm.c
-sed -i '/^[[:space:]]*struct sys_reg_desc clidr[[:space:]]*;/s/;$/ = { 0 };/' kernel/xiaomi/sm8450/arch/arm64/kvm/sys_regs.c
+sed -i '/^[[:space:]]*struct sys_reg_desc clidr[[:space:]]*;/s/;$/ = { 0 };/' arch/arm64/kvm/sys_regs.c
+sed -i 's/const char \*name;/const char \*name = NULL;/' drivers/input/misc/qcom-hv-haptics.c
+sed -i 's/struct limits_freq_table \*cpu1_freq_table, \*cpu2_freq_table;/struct limits_freq_table *cpu1_freq_table = NULL, *cpu2_freq_table = NULL;/' drivers/thermal/qcom/cpu_voltage_cooling.c

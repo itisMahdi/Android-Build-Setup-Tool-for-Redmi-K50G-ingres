@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "Cloning device/xiaomi/cupid folder..."
-git clone https://github.com/Joshaby/android_device_xiaomi_cupid.git -b lineage-23.2 device/xiaomi/cupid
+echo "Cloning device/xiaomi/ingres folder..."
+git clone https://github.com/Ingres-Centre/android_device_xiaomi_ingres.git device/xiaomi/ingres -b lineage-23.2
 
 echo "Cloning device/xiaomi/sm8450-common folder..."
 git clone https://github.com/Joshaby/android_device_xiaomi_sm8450-common -b lineage-23.2 device/xiaomi/sm8450-common
@@ -9,29 +9,23 @@ git clone https://github.com/Joshaby/android_device_xiaomi_sm8450-common -b line
 echo "Cloning vendor/xiaomi/sm8450-common..."
 git clone https://github.com/Joshaby/proprietary_vendor_xiaomi_sm8450-common.git -b lineage-23.2-gpu-driver-762.40 vendor/xiaomi/sm8450-common
 
-echo "Cloning vendor/xiaomi/cupid folder..."
-git clone https://github.com/TheMuppets/proprietary_vendor_xiaomi_cupid.git -b lineage-23.2 vendor/xiaomi/cupid
-
-echo "Cloning vendor/xiaomi/miuicamera-cupid folder..."
-git clone https://codeberg.org/dopaemon/proprietary_vendor_xiaomi_miuicamera-cupid.git -b lineage-22.2 vendor/xiaomi/miuicamera-cupid
-
-echo "Cloning device/xiaomi/miuicamera-cupid folder..."
-git clone https://github.com/cupid-development/android_device_xiaomi_miuicamera-cupid.git device/xiaomi/miuicamera-cupid
+echo "Cloning vendor/xiaomi/ingres folder..."
+git clone https://github.com/Ingres-Centre/proprietary_vendor_xiaomi_ingres.git vendor/xiaomi/ingres -b lineage-23.1
 
 echo "Cloning hardware/xiaomi folder..."
 git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi
 
 echo "Cloning hardware/dolby folder..."
-git clone https://github.com/rk134/hardware_dolby.git -b 15-ximi hardware/dolby
+git clone https://github.com/dopaemon/hardware_dolby.git -b 15-ximi hardware/dolby
 
 echo "Cloning kernel/xiaomi/sm8450 folder..."
-git clone https://github.com/LineageOS/android_kernel_xiaomi_sm8450.git kernel/xiaomi/sm8450
+git clone https://github.com/Ingres-Centre/android_kernel_xiaomi_sm8450.git kernel/xiaomi/sm8450 -b lineage-23.0
 
 echo "Cloning kernel/xiaomi/sm8450-devicetrees folder..."
-git clone https://github.com/Joshaby/android_kernel_xiaomi_sm8450-devicetrees.git kernel/xiaomi/sm8450-devicetrees
+git clone https://github.com/Ingres-Centre/android_kernel_xiaomi_sm8450-devicetrees.git kernel/xiaomi/sm8450-devicetrees -b lineage-23.0
 
 echo "Cloning kernel/xiaomi/sm8450-modules folder..."
-git clone https://github.com/Joshaby/android_kernel_xiaomi_sm8450-modules.git kernel/xiaomi/sm8450-modules
+git clone https://github.com/LineageOS/android_kernel_xiaomi_sm8450-modules.git kernel/xiaomi/sm8450-modules -b lineage-23.2
 
 echo "Cloning Wild Kernel Patches"
 git clone https://github.com/WildKernels/kernel_patches.git extras/ksu/wild-kernel-patches

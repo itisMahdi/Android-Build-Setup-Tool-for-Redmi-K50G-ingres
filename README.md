@@ -1,1 +1,4 @@
-# Android-Build-Setup-Tool-for-Xiaomi-12-Cupid
+# Android-Build-Setup-Tool-for-Redmi-K50G-ingres
+
+
+!!!It doesn't support triggers and leds patches!!!!

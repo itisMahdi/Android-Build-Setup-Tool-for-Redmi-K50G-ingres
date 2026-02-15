@@ -161,13 +161,3 @@ echo "Change Kernel Name"
 echo 'CONFIG_LOCALVERSION=""' >> "$defconfig"
 echo "CONFIG_LOCALVERSION_AUTO=n" >> "$defconfig"
 sed -i '217s/^[[:space:]]*echo "$res"[[:space:]]*$/res="${res\/-gki+\/}"\necho "$res-JoshaCore-WILDKSU+SUSFS"/' scripts/setlocalversion
-
-echo "Fix build for Clang r584948b(22.0.1)"
-
-echo 'KBUILD_CFLAGS += -Wuninitialized' >> Makefile
-echo 'KBUILD_CFLAGS += -Wno-sometimes-uninitialized' >> Makefile
-echo 'KBUILD_CFLAGS += -Wuninitialized' >> Makefile
-sed -i 's/^\([[:space:]]*const struct sde_pingpong_cfg \*pp_cfg\);/\1 = NULL;/' ../sm8450-modules/qcom/opensource/display-drivers/msm/sde/sde_rm.c
-sed -i '/^[[:space:]]*struct sys_reg_desc clidr[[:space:]]*;/s/;$/ = { 0 };/' arch/arm64/kvm/sys_regs.c
-sed -i 's/const char \*name;/const char \*name = NULL;/' drivers/input/misc/qcom-hv-haptics.c
-sed -i 's/struct limits_freq_table \*cpu1_freq_table, \*cpu2_freq_table;/struct limits_freq_table *cpu1_freq_table = NULL, *cpu2_freq_table = NULL;/' drivers/thermal/qcom/cpu_voltage_cooling.c
